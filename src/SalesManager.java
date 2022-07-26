@@ -1,6 +1,6 @@
 public class SalesManager {
 
-    protected int[] sales = {15000, 500, 300, 100, 1000};
+    protected int[] sales = {1000, 100, 100, 300, 400};
 
     public SalesManager() {
         this.sales = sales;
@@ -26,18 +26,17 @@ public class SalesManager {
         return min;
     }
 
+
     public int average() {
-        int average = 0;
-        int count = 0;
-        int averageWithoutMinAndMax = 0;
-        for (int sale : sales) {
-            if (sale != min() && sale != max()) {
-                count++;
-                average += sale;
-                averageWithoutMinAndMax = average / count;
+        int sum = 0;
+        int min = sales[0];
+        for (long sale : sales) {
+            if (sale < min) {
+                min = (int) sale;
             }
+            sum += sale;
         }
-        return averageWithoutMinAndMax;
+        return (int) ((sum - min - max()) / (sales.length - 2));
     }
 
     public String toString() {
